@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles.css";
 
+const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
+const ALLOWED_FORMATS = ["video/mp4", "video/m4v"];
+
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [editingVideo, setEditingVideo] = useState(null);
@@ -9,6 +12,7 @@ const VideoList = () => {
   const [newFile, setNewFile] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     fetchVideos();
@@ -38,7 +42,29 @@ const VideoList = () => {
     setEditingVideo(video);
     setNewTitle(video.title);
     setNewFile(null);
+    setErrorMessage(""); // Reset error message on open
     setShowModal(true);
+  };
+
+  const validateFile = (selectedFile) => {
+    if (!selectedFile) return "Please select a video file.";
+    if (!ALLOWED_FORMATS.includes(selectedFile.type)) return "Invalid file format. Allowed: MP4, M4V, etc";
+    if (selectedFile.size > MAX_FILE_SIZE) return "File size exceeds 100MB limit.";
+    return null;
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    const error = validateFile(file);
+    if (error) {
+      setErrorMessage(error);
+      e.target.value = ""; // Clear file input field
+      setNewFile(null);
+    } else {
+      setErrorMessage("");
+      setNewFile(file);
+    }
   };
 
   const handleUpdate = async () => {
@@ -105,14 +131,20 @@ const VideoList = () => {
               onChange={(e) => setNewTitle(e.target.value)}
               className="edit-input"
             />
-            <input type="file" accept="video/*" onChange={(e) => setNewFile(e.target.files[0])} />
-            <div className="modal-buttons">
-  <button className="cancel-btn" onClick={() => setShowModal(false)}>Cancel</button>
-  <button className="save-btn" onClick={handleUpdate} disabled={isUpdating}>
-    {isUpdating ? "Updating..." : "Save Changes"}
-  </button>
-</div>
+            <input
+  type="file"
+  accept="video/*"
+  className="edit-input"
+  onChange={handleFileChange}
+/>
+{errorMessage && <p style={{ color: "red", marginTop: "5px" }}>{errorMessage}</p>}
 
+            <div className="modal-buttons">
+              <button className="cancel-btn" onClick={() => setShowModal(false)}>Cancel</button>
+              <button className="save-btn" onClick={handleUpdate} disabled={isUpdating || errorMessage}>
+                {isUpdating ? "Updating..." : "Save Changes"}
+              </button>
+            </div>
           </div>
         </div>
       )}
