@@ -11,7 +11,7 @@ app.use(express.json());
 
 // CORS for Frontend
 app.use(cors({
-    origin: ["https://video-stream-frontend-one.vercel.app"],
+    origin: ["https://video-streaming-frontend-orpin.vercel.app"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
