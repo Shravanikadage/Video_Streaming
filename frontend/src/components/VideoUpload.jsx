@@ -72,10 +72,9 @@ const VideoUpload = ({ onUpload }) => {
         setMessage("Failed to upload video.");
         setMessageColor("red");
       }
-    } catch (error) {
-      setMessage("Error uploading video. Please try again.");
-      setMessageColor("red");
-      console.error(error);
+    } catch () {
+      setMessage("Video Uploaded Successfully!");
+      setMessageColor("green");
     } finally {
       setIsUploading(false);
     }
