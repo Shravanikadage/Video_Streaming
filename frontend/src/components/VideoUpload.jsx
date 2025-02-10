@@ -11,11 +11,11 @@ const VideoUpload = ({ onUpload }) => {
   const [messageColor, setMessageColor] = useState("");
 
   const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
-  const ALLOWED_FORMATS = ["video/mp4", "video/quicktime", "video/x-msvideo", "video/x-matroska"];
+  const ALLOWED_FORMATS = ["video/mp4", "video/m4v"];
 
   const validateFile = (selectedFile) => {
     if (!selectedFile) return "Please select a video file.";
-    if (!ALLOWED_FORMATS.includes(selectedFile.type)) return "Invalid file format. Allowed: MP4, MOV, AVI, MKV.";
+    if (!ALLOWED_FORMATS.includes(selectedFile.type)) return "Invalid file format. Allowed: mp4, m4v";
     if (selectedFile.size > MAX_FILE_SIZE) return "File size exceeds 100MB limit.";
     return null;
   };
