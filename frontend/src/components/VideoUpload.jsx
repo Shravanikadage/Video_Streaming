@@ -15,7 +15,7 @@ const VideoUpload = ({ onUpload }) => {
 
   const validateFile = (selectedFile) => {
     if (!selectedFile) return "Please select a video file.";
-    if (!ALLOWED_FORMATS.includes(selectedFile.type)) return "Invalid file format. Allowed: mp4, m4v";
+    if (!ALLOWED_FORMATS.includes(selectedFile.type)) return "Invalid file format. Allowed: mp4, m4v, etc";
     if (selectedFile.size > MAX_FILE_SIZE) return "File size exceeds 100MB limit.";
     return null;
   };
