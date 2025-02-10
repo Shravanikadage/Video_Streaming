@@ -16,7 +16,7 @@ const VideoList = () => {
 
   const fetchVideos = async () => {
     try {
-      const res = await axios.get("https://video-stream-backend-theta.vercel.app/videos");
+      const res = await axios.get("https://video-streaming-backend-gamma.vercel.app/videos");
       setVideos(res.data);
     } catch (error) {
       console.error("Error fetching videos:", error);
@@ -26,7 +26,7 @@ const VideoList = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this video?")) {
       try {
-        await axios.delete(`https://video-stream-backend-theta.vercel.app/videos/${id}`);
+        await axios.delete(`https://video-streaming-backend-gamma.vercel.app/videos/${id}`);
         fetchVideos();
       } catch (error) {
         console.error("Error deleting video:", error);
@@ -59,7 +59,7 @@ const VideoList = () => {
         updatedUrl = cloudinaryResponse.data.secure_url;
       }
 
-      await axios.put(`https://video-stream-backend-theta.vercel.app/videos/${editingVideo._id}`, {
+      await axios.put(`https://video-streaming-backend-gamma.vercel.app/videos/${editingVideo._id}`, {
         title: newTitle,
         url: updatedUrl,
       });
