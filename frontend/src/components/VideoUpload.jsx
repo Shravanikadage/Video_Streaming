@@ -57,7 +57,7 @@ const VideoUpload = ({ onUpload }) => {
 
       const videoUrl = cloudinaryResponse.data.secure_url;
 
-      const response = await axios.post("https://video-stream-backend-theta.vercel.app/upload", {
+      const response = await axios.post("https://video-streaming-backend-gamma.vercel.app/upload", {
         title,
         url: videoUrl,
       });
