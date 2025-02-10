@@ -262,52 +262,6 @@ video {
     background-color: #45a049;
 }
 
-/* Responsive Design for smaller screens */
-@media (max-width: 768px) {
-    .video-item {
-        width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar-logo h2 {
-        font-size: 1.5rem;
-    }
-
-    .video-item {
-        width: 100%;
-    }
-}
-
-
-/* navbar Styles */
-@media (max-width: 768px) {
-    .navbar-links {
-        display: none;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #333;
-        flex-direction: column;
-    }
-
-    .navbar-links.active {
-        display: flex;
-    }
-
-    .navbar-links li {
-        margin: 15px 0;
-    }
-
-    .navbar-toggle {
-        display: flex;
-    }
-}
-
-
 /* Modal Overlay */
 .modal-overlay {
     position: fixed;
@@ -410,4 +364,50 @@ video {
   .video-item button:hover {
     background-color: #7c7c7c; /* Slightly lighter gray on hover */
   }
-  
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .video-item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-logo h2 {
+        font-size: 1.5rem;
+    }
+
+    .video-item {
+        width: 100%;
+    }
+}
+
+
+/* navbar Styles */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #333;
+        flex-direction: column;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-links li {
+        margin: 15px 0;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+}
+
+
